@@ -3,7 +3,12 @@ import Link from 'next/link';
 import React from 'react';
 import styles from './page.module.css';
 
-const MealPage = () => {
+import { getMeals } from '@/lib/meals';
+
+export default async function MealPage() {
+ const meals = await getMeals()
+
+
   return (
     <>
       <header className={styles.header}>
@@ -20,10 +25,9 @@ const MealPage = () => {
       </header>
 
       <main className={styles.main}>
-        <MealsGrid meals={[]}/>
+        <MealsGrid meals={meals}/>
       </main>
     </>
   );
 };
 
-export default MealPage;
