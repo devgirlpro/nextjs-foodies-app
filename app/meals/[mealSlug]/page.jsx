@@ -5,7 +5,7 @@ const mealDetailsPage = ({params}) => {
   return (
     <>
     <h1>meal Details Page</h1>
-    <h2>{params.mealSlug}</h2>
+    <h2>params: {params.mealSlug}</h2>
     <Link href='/' >Home Pgae</Link>
     </>
     

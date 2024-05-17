@@ -1,14 +1,29 @@
-import Link from 'next/link'
-import React from 'react'
+import MealsGrid from '@/components/meals/meals-grid';
+import Link from 'next/link';
+import React from 'react';
+import styles from './page.module.css';
 
 const MealPage = () => {
   return (
-    <div>
-      <h1>Meal Page</h1>
-      <Link href='/meals/meal-1'>meal 1</Link>
-      <Link href='/meals/meal-2'>meal 2</Link>
-    </div>
-  )
-}
+    <>
+      <header className={styles.header}>
+        <h1>
+          Delicius meals, creatd{' '}
+          <span className={styles.highlight}>by you</span>
+        </h1>
+        <p>
+          Choose your favorite recepe and cook it yourself, it is easy & fun!
+        </p>
+        <p className={styles.cta}>
+          <Link href="/meals/share">Share your favorite Recipe</Link>
+        </p>
+      </header>
 
-export default MealPage
+      <main className={styles.main}>
+        <MealsGrid meals={[]}/>
+      </main>
+    </>
+  );
+};
+
+export default MealPage;

@@ -2,7 +2,7 @@ import React from 'react'
 
 const ShareMealPage = () => {
   return (
-    <div>ShareMealPage</div>
+    <h1>ShareMealPage</h1>
   )
 }
 
