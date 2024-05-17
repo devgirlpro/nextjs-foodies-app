@@ -1,15 +1,41 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import React from 'react';
+import styles from './page.module.css';
+import Image from 'next/image';
 
-const mealDetailsPage = ({params}) => {
+import { getMeal } from '@/lib/meals';
+
+export default function mealDetailsPage({ params }) {
+  const meal = getMeal(params.mealSlug)
+
+meal.instructions = meal.instructions.replace(/\n/g, '<br />')
+  console.log("meal ==>", meal)
+
   return (
     <>
-    <h1>meal Details Page</h1>
-    <h2>params: {params.mealSlug}</h2>
-    <Link href='/' >Home Pgae</Link>
-    </>
-    
-  )
-}
+      <headr className={styles.header}>
+        <div className={styles.image}>
+          <Image src={meal.image} alt={meal.title} fill />
+        </div>
+        <div className={styles.headerText}>
+          <h1>{meal.title}</h1>
+      
+          <p className={styles.creator}>
+            by <a href={`mailto:${meal.creator_email}`}>{meal.creator}</a>
+          </p>
+          <p className={styles.summary}>{meal.summary}</p>
+        </div>
+      </headr>
 
-export default mealDetailsPage
+      <main>
+        <p
+          className={styles.instructions}
+          dangerouslySetInnerHTML={{
+            __html: meal.instructions,
+          }}
+        ></p>
+      </main>
+      <Link href="/">Home Pgae</Link>
+    </>
+  );
+}
